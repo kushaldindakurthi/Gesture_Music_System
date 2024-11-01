@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <title>Music Player</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600&display=swap");
+
+    :root {
+      --primary-clr: rgba(228, 228, 229, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Nunito", sans-serif;
+    }
+
+    body {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      width: 100%;
+      background: url(https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/8727c9b1-be21-4932-a221-4257b59a74dd);
+      background-repeat: no-repeat;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      animation: slidein 120s forwards infinite alternate;
+    }
+
+    @keyframes slidein {
+
+      0%,
+      100% {
+        background-position: 20% 0%;
+        background-size: 3400px;
+      }
+
+      50% {
+        background-position: 100% 0%;
+        background-size: 2400px;
+      }
+    }
+
+    .album-cover {
+      width: 90%;
+    }
+
+    .swiper {
+      width: 100%;
+      padding: 40px 0 100px;
+    }
+
+    .swiper-slide {
+      position: relative;
+      max-width: 200px;
+      aspect-ratio: 1/1;
+      border-radius: 10px;
+    }
+
+    .swiper-slide img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+      -webkit-box-reflect: below -5px linear-gradient(transparent, transparent, rgba(0, 0, 0, 0.4));
+      transform-origin: center;
+      transform: perspective(800px);
+      transition: 0.3s ease-out;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .swiper-slide-active .overlay {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 98%;
+      background-color: rgba(28, 22, 37, 0.6);
+      border-radius: inherit;
+      opacity: 0;
+      transition: all 0.4s linear;
+    }
+
+    .swiper-slide:hover .overlay {
+      opacity: 1;
+    }
+
+    .swiper-slide .overlay ion-icon {
+      opacity: 0;
+    }
+
+    .swiper-slide-active:hover .overlay ion-icon {
+      font-size: 4rem;
+      color: #eb0b0b;
+      opacity: 1;
+      cursor: pointer;
+    }
+
+    /* Music Player */
+
+    .music-player {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: var(--primary-clr);
+      width: 380px;
+      padding: 10px 30px;
+      border-radius: 20px;
+    }
+
+    .music-player h1 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      line-height: 1.6;
+    }
+
+    .music-player p {
+      font-size: 1rem;
+      font-weight: 400;
+      opacity: 0.6;
+    }
+
+    /* Music Player Progress */
+
+    #progress {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 100%;
+      height: 7px;
+      background: rgba(163, 162, 164, 0.4);
+      border-radius: 4px;
+      margin: 32px 0 24px;
+      cursor: pointer;
+    }
+
+    #progress::-webkit-slider-thumb {
+      appearance: none;
+      -webkit-appearance: none;
+      background: rgba(163, 162, 164, 0.9);
+      width: 16px;
+      aspect-ratio: 1/1;
+      border-radius: 50%;
+      outline: 4px solid var(--primary-clr);
+      box-shadow: 0 6px 10px rgba(5, 36, 28, 0.3);
+    }
+
+    /* Music Player Controls */
+
+    .controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .controls button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      aspect-ratio: 1/1;
+      margin: 20px;
+      background: rgba(163, 162, 164, 0.3);
+      color: var(--primary-clr);
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      outline: 0;
+      font-size: 1.1rem;
+      box-shadow: 0 10px 20px rgba(5, 36, 28, 0.3);
+      cursor: pointer;
+      transition: all 0.3s linear;
+    }
+
+    .controls button:is(:hover, :focus-visible) {
+      transform: scale(0.96);
+    }
+
+    .controls button:nth-child(2) {
+      transform: scale(1.3);
+    }
+
+    .controls button:nth-child(2):is(:hover, :focus-visible) {
+      transform: scale(1.25);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="album-cover"><br>
+    <center>
+      <h1 style="color: aliceblue;">Classical Music</h1>
+    </center>
+    <div class="swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <img
+            src="data:image/jpeg;base64,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" />
+        </div>
+        <div class="swiper-slide">
+          <img
+            src="data:image/jpeg;base64,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" />
+        </div>
+        <div class="swiper-slide">
+          <img
+            src="data:image/jpeg;base64,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" />
+        </div>
+        <div class="swiper-slide">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjy0F9NeCl5k_GpuqAz7jR5GhDQ9Oaq0nReQ&s" />
+        </div>
+        <div class="swiper-slide">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTj0ByOl-CJff59CZKJZ-ByOheZTGCYVFz7MA&s" />
+        </div>
+        <div class="swiper-slide">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6tVQN7oA3cNRtRToB5SaLOIfDiGZvR-BwXw&s" />
+        </div>
+        <div class="swiper-slide">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOpMmP5OulZKj_u3dLeDWfulO0GWlBry11pg&s" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="music-player">
+    <h1>Title</h1>
+    <p>Song Name</p>
+
+    <audio id="song" autoplay>
+      <source src="https://cdn.pixabay.com/download/audio/2022/06/27/audio_d1eeb72cda.mp3?filename=happy-day-113985.mp3"
+        type="audio/mpeg" />
+    </audio>
+
+    <input type="range" value="0" id="progress" />
+
+    <div class="controls">
+      <button class="backward">
+        <i class="fa-solid fa-backward"></i>
+      </button>
+      <button class="play-pause-btn">
+        <i class="fa-solid fa-play" id="controlIcon"></i>
+      </button>
+      <button class="forward">
+        <i class="fa-solid fa-forward"></i>
+      </button>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <script>
+    const progress = document.getElementById("progress");
+    const song = document.getElementById("song");
+    const controlIcon = document.getElementById("controlIcon");
+    const playPauseButton = document.querySelector(".play-pause-btn");
+    const forwardButton = document.querySelector(".controls button.forward");
+    const backwardButton = document.querySelector(".controls button.backward");
+    const songName = document.querySelector(".music-player h1");
+    const artistName = document.querySelector(".music-player p");
+
+    const songs = [
+      {
+        title: "Militant Amelia",
+        name: "White Records",
+        source:
+          "https://cdn.pixabay.com/download/audio/2024/04/29/audio_d0c71fa1ff.mp3?filename=militant-amelia-epic-drama-orchestra-background-music-for-video-25sec-205318.mp3"
+      },
+      {
+        title: "Loneliness Outro",
+        name: "Grand Project",
+        source:
+          "https://cdn.pixabay.com/download/audio/2024/02/29/audio_ec4452013f.mp3?filename=background-epic-piano-music-for-short-video-vlog-advertising-24-sec-193852.mp3"
+      },
+      {
+        title: "Winter Legacy",
+        name: "White Records",
+        source:
+          "https://cdn.pixabay.com/download/audio/2024/03/06/audio_10ef18c5d9.mp3?filename=background-music-for-short-dramatic-video-vlogs-epic-promo-30-second-194798.mp3"
+      },
+      {
+        title: "Warrior",
+        name: "Stock-Audios",
+        source:
+          "https://cdn.pixabay.com/download/audio/2024/02/29/audio_b15770c430.mp3?filename=background-dramatic-piano-music-for-short-video-vlog-23-second-193851.mp3"
+      },
+      {
+        title: "Legacy of Handel",
+        name: "GregorQuendel",
+        source:
+          "https://cdn.pixabay.com/download/audio/2024/03/04/audio_704f543179.mp3?filename=background-music-for-video-promo-stories-positive-spring-day-27-sec-194441.mp3"
+      },
+
+      {
+        title: "Epicaly",
+        name: "LiteSaturation",
+        source:
+          "https://cdn.pixabay.com/download/audio/2024/03/04/audio_79cc579e41.mp3?filename=light-cheerful-short-background-music-for-video-vlogs-funny-hip-hop-194442.mp3"
+      },
+      {
+        title: "Cinematic Hybrid",
+        name: "Lucafrancini",
+        source:
+          "https://cdn.pixabay.com/download/audio/2024/02/06/audio_359c636c2d.mp3?filename=background-epic-piano-music-for-short-video-vlog-advertising-23-sec-189905.mp3"
+      },
+    ];
+
+    let currentSongIndex = 3;
+
+    function updateSongInfo() {
+      songName.textContent = songs[currentSongIndex].title;
+      artistName.textContent = songs[currentSongIndex].name;
+      song.src = songs[currentSongIndex].source;
+
+      song.addEventListener("loadeddata", function () { });
+    }
+
+    song.addEventListener("timeupdate", function () {
+      if (!song.paused) {
+        progress.value = song.currentTime;
+      }
+    });
+
+    song.addEventListener("loadedmetadata", function () {
+      progress.max = song.duration;
+      progress.value = song.currentTime;
+    });
+
+    function pauseSong() {
+      song.pause();
+      controlIcon.classList.remove("fa-pause");
+      controlIcon.classList.add("fa-play");
+    }
+
+    function playSong() {
+      song.play();
+      controlIcon.classList.add("fa-pause");
+      controlIcon.classList.remove("fa-play");
+    }
+
+    function playPause() {
+      if (song.paused) {
+        playSong();
+      } else {
+        pauseSong();
+      }
+    }
+
+    playPauseButton.addEventListener("click", playPause);
+
+    progress.addEventListener("input", function () {
+      song.currentTime = progress.value;
+    });
+
+    progress.addEventListener("change", function () {
+      playSong();
+    });
+
+    forwardButton.addEventListener("click", function () {
+      currentSongIndex = (currentSongIndex + 1) % songs.length;
+      updateSongInfo();
+      playPause();
+    });
+
+    backwardButton.addEventListener("click", function () {
+      currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+      updateSongInfo();
+      playPause();
+    });
+
+    updateSongInfo();
+
+    var swiper = new Swiper(".swiper", {
+      effect: "coverflow",
+      centeredSlides: true,
+      initialSlide: 3,
+      slidesPerView: "auto",
+      allowTouchMove: false,
+      spaceBetween: 40,
+      coverflowEffect: {
+        rotate: 25,
+        stretch: 0,
+        depth: 50,
+        modifier: 1,
+        slideShadows: false,
+      },
+      navigation: {
+        nextEl: ".forward",
+        prevEl: ".backward",
+      },
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Gesture Music System</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <!--{{ url_for('static', filename='style.css') }}-->
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+  <header class="site-header">
+    <h1 class="title">GMS</h1>
+    <nav class="site-nav">
+        <ul>
+            <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="#about"><i class="fas fa-user"></i> About</a></li>
+            <li><a href="#customize"><i class="fas fa-compass"></i> Explore</a></li>
+            <li><a href="#contact"><i class="fa fa-envelope"></i> Contact</a></li>
+            <li><a href="#choose"><i class="fas fa-comments"></i> Feedback</a></li>
+        </ul> 
+    </nav>
+</header>
+
+  <section id="home" class="section">
+    <table class="full-width-table">
+      <tr>
+        <td class="content-cell">
+          <h1>Enhanced Music Exploration Through <br><span id="typewriter"></span></h1><br>
+          <p>
+            Step into the future of music hunting with our cutting-edge platform, where a wave of the hand can give you customized music discovery. Imagine making playlists and discovering tracks without ever having to bang on a keyboard. Utilizing advanced hand gesture recognition technology, users will be able to navigate effortlessly through favorite tracks and genres by mere intuitive motions of the hands. Our platform takes passion for music to merge with the miracle of intuitive interaction. We make every listening session a self-driven discovery process. Welcome to a world where playlists bloom at your gestures, inventing a new way of getting blasted and enjoying music.
+          </p>
+        </td>
+        <td class="empty-cell">
+          <!-- This cell will be empty to allow the background image to show -->
+        </td>
+      </tr>
+    </table>
+  </section>
+
+  <section id="about" class="section"><br>
+    <div class="text-content" style="margin: 0 30px;">
+      <!-- Your text goes here -->
+      <center>
+        <h1 style="color: rgb(100, 17, 17);">About</h1>
+      </center><br>
+      <p>A gesture navigation system to transform the way you surf. Enjoy wonderfully seamless control and customization with intuitive gestures that surface actions. Embody gesture-based navigation, where every move is designed to better your journey through the website. One surfing gesture after another could be easy, and could unlock completely new and higher levels of interactions where gestures send volumes about simplicity and effectiveness.</p>
+    </div><br><br>
+    <div class="content-wrapper">
+      <center>
+        <div class="carousel">
+          <div class="carousel-slide">
+            <img src="\static\1-5.jpg" alt="1-5">
+          </div>
+          <div class="carousel-slide">
+            <img src="\static\6-10.jpg" alt="6-10">
+          </div>
+          <div class="carousel-slide">
+            <img src="\static\updown.jpg" alt="updown">
+          </div>
+          <div class="carousel-slide">
+            <img src="\static\Gestures.png" alt="Gestures">
+          </div>
+          <div class="carousel-slide">
+            <img src="\static\click.jpg" alt="click">
+          </div>
+          <div class="carousel-slide">
+            <img src="\static\100left.jpg" alt="100left">
+          </div>
+          <div class="carousel-slide">
+            <img src="\static\100right.jpg" alt="100right">
+          </div>
+          <div class="carousel-slide">
+            <img src="\static\100.jpg" alt="100down">
+          </div>
+        </div>
+        <button class="carousel-control prev" onclick="moveSlide(-1)">&#10094;</button>
+        <button class="carousel-control next" onclick="moveSlide(1)">&#10095;</button>
+      </center>
+    </div>
+  </section>
+
+  <section id="customize" class="section">
+    <div class="text-content">
+      
+      <center>
+        <h1 style="color: rgb(100, 17, 17);">Playlist Exploration</h1>
+      </center><br>
+    </div>
+    <div class="card-section">
+      <div class="container">
+        <div class="card about">
+          <h2>
+            <center><b>Playlists</b></center>
+          </h2><br>
+          <ol>
+            <li>Chill Vibes</li>
+            <li>Upbeat Songs</li>
+            <li>Instrumental Music</li>
+            <li>Devotional Songs</li>
+            <li>Acoustic Melodies</li>
+            <li>Meditation Music</li>
+            <li>Nature Sounds</li>
+            <li>Gym Motivation</li>
+            <li>Classical Music</li>
+            <li>Ambient Music</li>
+          </ol>
+        </div>
+        <div class="card webcam">
+          <h2>Cam</h2><br>
+          <img src="{{ url_for('video') }}" width="100%">
+        </div>
+        <div class="card controls">
+          <h2>Controls</h2><br>
+          <div class="button-group">
+            <form id="capture-form">
+              <button type="submit">Snap</button>
+            </form>
+            <form id="reset-form">
+              <button type="submit">Reset</button>
+            </form>
+          </div>
+          <div class="output">{{ output }}</div>
+          <form id="redirect-form" action="/redirect" method="POST">
+            <input type="hidden" name="output_value" id="output-value">
+            <button type="submit" class="discover-music-btn">Explore Playlists</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- CHOOSE YOUR SONG -->
+
+   <!-- Contact Page Section -->
+<section id="contact">
+  <h2>Contact Us</h2><br><br>
+  <div class="contact-container">
+    <div class="map-container">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3803.0590188881756!2d78.41515037412901!3d17.599932096649486!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb8ecfe1af26dd%3A0x65666fa3c4a256d2!2sInstitute%20of%20Aeronautical%20Engineering!5e0!3m2!1sen!2sin!4v1724434934951!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    
+    <div class="form-container">
+      <form class="contact-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+
+        <button type="submit" class="submit-btn">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+  <section id="choose" class="section">
+    <div class="text-content">
+      <!-- Your text goes here -->
+      <center>
+        <h1 style="color: rgb(100, 17, 17);">Feedback</h1>
+      </center><br>
+    </div>
+    <!-- Feedback Emoji Rating -->
+    <div class="app">
+      <center>
+        <h1 style="color:black"></h1>
+      </center><br><br><br>
+
+      <div class="container"style="display: flex; border: 2px solid #ccc; padding: 10px; margin: 10px;" >
+        <div class="item"style="flex: 1; text-align: center;" >
+          <label for="0">
+            <input class="radio" type="radio" name="feedback" id="0" value="0">
+            <span style="font-size: 5rem;">🤬</span>
+          </label>
+        </div>
+
+        <div class="item" style="flex: 1; text-align: center;">
+          <label for="1">
+            <input class="radio" type="radio" name="feedback" id="1" value="1">
+            <span style="font-size: 5rem;">🙁</span>
+          </label>
+        </div>
+
+        <div class="item" style="flex: 1; text-align: center;">
+          <label for="2">
+            <input class="radio" type="radio" name="feedback" id="2" value="2">
+            <span style="font-size: 5rem;">😶</span>
+          </label>
+        </div>
+
+        <div class="item" style="flex: 1; text-align: center;">
+          <label for="3">
+            <input class="radio" type="radio" name="feedback" id="3" value="3">
+            <span style="font-size: 5rem;">😁</span>
+          </label>
+        </div>
+
+        <div class="item" style="flex: 1; text-align: center;">
+          <label for="4">
+            <input class="radio" type="radio" name="feedback" id="4" value="4">
+            <span style="font-size: 5rem;">😍</span>
+          </label>
+        </div>
+      </div>
+      <br>
+      <center><button id="submit-button" onclick="submitFeedback()">Submit</button></center>
+    </div>
+  </section>
+  <script>
+    function submitFeedback() {
+      // Check if any feedback is selected
+      let isFeedbackSelected = false;
+      document.querySelectorAll('.radio').forEach(radio => {
+        if (radio.checked) {
+          isFeedbackSelected = true;
+        }
+      });
+
+      // If feedback is not selected, display an alert
+      if (!isFeedbackSelected) {
+        alert('Please provide your valuable feedback.');
+        return; // Exit the function if no feedback is given
+      }
+
+      // Reset all emojis to grayscale
+      document.querySelectorAll('.radio + span').forEach(emoji => {
+        emoji.style.filter = 'grayscale(100)';
+      });
+
+      // Uncheck all radio buttons
+      document.querySelectorAll('.radio').forEach(radio => {
+        radio.checked = false;
+      });
+
+      // Display feedback submitted alert
+      alert('Feedback Submitted! Thank you.');
+    }
+
+    // Listen for any change on the radio buttons
+    document.querySelectorAll('.radio').forEach(radio => {
+      radio.addEventListener('change', function () {
+        // Reset all emojis to colorless
+        document.querySelectorAll('.radio + span').forEach(emoji => {
+          emoji.style.filter = 'grayscale(100)';
+        });
+        // Color the selected emoji
+        this.nextElementSibling.style.filter = 'grayscale(0)';
+      });
+    });
+  </script>
+
+  <script>
+    const text = "Hand Gesture Recognition";
+    const typingDelay = 150;
+    let index = 0;
+    let typing = true;
+
+    function typeWriter() {
+      if (typing) {
+        if (index < text.length) {
+          document.getElementById('typewriter').textContent += text.charAt(index);
+          index++;
+          setTimeout(typeWriter, typingDelay);
+        } else {
+          // Reset for continuous effect
+          setTimeout(() => {
+            document.getElementById('typewriter').textContent = '';
+            index = 0;
+            typeWriter();
+          }, 2000); // Wait for 2 seconds before restarting
+        }
+      }
+    }
+
+    // Start the typewriter effect
+    typeWriter();
+
+    // Optional: Stop the typewriter effect on click
+    document.getElementById('typewriter').addEventListener('click', () => {
+      typing = false;
+      document.getElementById('typewriter').textContent = text;
+    });
+
+    // Function to show only the desired section
+    function showSection(sectionId) {
+      // Hide all sections
+      var sections = document.querySelectorAll('.section');
+      sections.forEach(function (section) {
+        section.style.display = 'none';
+      });
+
+      // Show the specified section
+      var sectionToShow = document.getElementById(sectionId);
+      if (sectionToShow) {
+        sectionToShow.style.display = 'block';
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      // Assuming 'customize-section' is the ID of the section you want to stay in
+      var customizeSectionId = 'customize';
+
+      // Add event listener for the 'Capture' button
+      document.querySelector('.capture-btn').addEventListener('click', function (event) {
+        event.preventDefault();
+        // Your capture logic here
+        showSection(customizeSectionId);
+      });
+
+      // Add event listener for the 'Reset' button
+      document.querySelector('.reset-btn').addEventListener('click', function (event) {
+        event.preventDefault();
+        // Your reset logic here
+        showSection(customizeSectionId);
+      });
+
+      // Add event listener for the 'Discover Music' button
+      document.querySelector('.discover-music-btn').addEventListener('click', function (event) {
+        event.preventDefault();
+        // Your discover music logic here
+        showSection(customizeSectionId);
+      });
+    });
+
+  </script>
+  <script>
+    // JavaScript to handle the Capture form submission
+    document.getElementById('capture-form').addEventListener('submit', function (event) {
+      event.preventDefault(); // Prevent the default form submission
+      fetch('/capture', {
+        method: 'POST',
+        // Add any necessary headers and body data here
+      })
+        .then(response => response.text())
+        .then(data => {
+          document.querySelector('.output').textContent = data; // Update the output div with the response
+        });
+    });
+
+    // JavaScript to handle the Reset form submission
+    document.getElementById('reset-form').addEventListener('submit', function (event) {
+      event.preventDefault(); // Prevent the default form submission
+      fetch('/reset', {
+        method: 'POST',
+        // Add any necessary headers and body data here
+      })
+        .then(response => response.text())
+        .then(data => {
+          document.querySelector('.output').textContent = data; // Update the output div with the response
+        });
+    });
+  </script>
+  <script>
+    function redirectToChooseSection() {
+      // Assuming 'choose-section' is the ID of the section you want to scroll to
+      window.location.hash = 'choose';
+      // Optional: if you want to animate the scroll to the section
+      document.getElementById('choose').scrollIntoView({ behavior: 'smooth' });
+    }
+    // Add event listener for the 'Discover Music' button
+    document.querySelector('.discover-music-btn').addEventListener('click', function (event) {
+      event.preventDefault();
+      // Set the output value to the hidden input field
+      document.getElementById('output-value').value = document.querySelector('.output').textContent;
+      // Submit the form
+      document.getElementById('redirect-form').submit();
+    });
+
+  </script>
+  
+  <script>
+  //js for carousel  
+let slideIndex = 0;
+const slides = document.querySelectorAll('.carousel-slide');
+const totalSlides = slides.length;
+
+function showSlide(index) {
+  if (index >= totalSlides) slideIndex = 0;
+  else if (index < 0) slideIndex = totalSlides - 1;
+  else slideIndex = index;
+
+  const offset = -slideIndex * 100;
+  document.querySelector('.carousel').style.transform = `translateX(${offset}%)`;
+}
+
+function moveSlide(step) {
+  showSlide(slideIndex + step);
+}
+
+// Automatic sliding
+setInterval(() => {
+  moveSlide(1);
+}, 5000); // Adjust the timing as needed (3000ms = 3 seconds)
+
+// Show the first slide
+showSlide(slideIndex);
+</script>
+
+<footer class="site-footer">
+  <nav class="footer-nav">
+    <a href="#home" class="footer-link"><i class="fas fa-home"></i> Home</a>
+    <a href="#about" class="footer-link"><i class="fas fa-user"></i> About</a>
+    <a href="#customize" class="footer-link"><i class="fas fa-compass"></i> Explore</a>
+    <a href="#contact" class="footer-link"><i class="fa fa-envelope"></i> Contact</a>
+    <a href="#choose" class="footer-link"><i class="fas fa-comments"></i> Feedback</a>
+  </nav>
+  <br>
+  <p class="footer-copy">&copy; <b>2024 Gesture Music System. All rights reserved.</b></p>
+</footer>
+
+
+  <!--
+<footer style="background-color: #333; color: #fff; text-align: center; padding: 20px; position: relative; bottom: 0; left: 0; width: 100%;">
+  <p><b>&copy; 2024 Gesture Music System. All rights reserved.</b></p>
+</footer>
+-->
+</body>
+
+</html>

@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <title>Music Player</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600&display=swap");
+
+    :root {
+      --primary-clr: rgba(228, 228, 229, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Nunito", sans-serif;
+    }
+
+    body {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      width: 100%;
+      background: url(https://github.com/ecemgo/mini-samples-great-tricks/assets/13468728/8727c9b1-be21-4932-a221-4257b59a74dd);
+      background-repeat: no-repeat;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      animation: slidein 120s forwards infinite alternate;
+    }
+
+    @keyframes slidein {
+
+      0%,
+      100% {
+        background-position: 20% 0%;
+        background-size: 3400px;
+      }
+
+      50% {
+        background-position: 100% 0%;
+        background-size: 2400px;
+      }
+    }
+
+    .album-cover {
+      width: 90%;
+    }
+
+    .swiper {
+      width: 100%;
+      padding: 40px 0 100px;
+    }
+
+    .swiper-slide {
+      position: relative;
+      max-width: 200px;
+      aspect-ratio: 1/1;
+      border-radius: 10px;
+    }
+
+    .swiper-slide img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+      -webkit-box-reflect: below -5px linear-gradient(transparent, transparent, rgba(0, 0, 0, 0.4));
+      transform-origin: center;
+      transform: perspective(800px);
+      transition: 0.3s ease-out;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .swiper-slide-active .overlay {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 98%;
+      background-color: rgba(28, 22, 37, 0.6);
+      border-radius: inherit;
+      opacity: 0;
+      transition: all 0.4s linear;
+    }
+
+    .swiper-slide:hover .overlay {
+      opacity: 1;
+    }
+
+    .swiper-slide .overlay ion-icon {
+      opacity: 0;
+    }
+
+    .swiper-slide-active:hover .overlay ion-icon {
+      font-size: 4rem;
+      color: #eb0b0b;
+      opacity: 1;
+      cursor: pointer;
+    }
+
+    /* Music Player */
+
+    .music-player {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: var(--primary-clr);
+      width: 380px;
+      padding: 10px 30px;
+      border-radius: 20px;
+    }
+
+    .music-player h1 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      line-height: 1.6;
+    }
+
+    .music-player p {
+      font-size: 1rem;
+      font-weight: 400;
+      opacity: 0.6;
+    }
+
+    /* Music Player Progress */
+
+    #progress {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 100%;
+      height: 7px;
+      background: rgba(163, 162, 164, 0.4);
+      border-radius: 4px;
+      margin: 32px 0 24px;
+      cursor: pointer;
+    }
+
+    #progress::-webkit-slider-thumb {
+      appearance: none;
+      -webkit-appearance: none;
+      background: rgba(163, 162, 164, 0.9);
+      width: 16px;
+      aspect-ratio: 1/1;
+      border-radius: 50%;
+      outline: 4px solid var(--primary-clr);
+      box-shadow: 0 6px 10px rgba(5, 36, 28, 0.3);
+    }
+
+    /* Music Player Controls */
+
+    .controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .controls button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      aspect-ratio: 1/1;
+      margin: 20px;
+      background: rgba(163, 162, 164, 0.3);
+      color: var(--primary-clr);
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      outline: 0;
+      font-size: 1.1rem;
+      box-shadow: 0 10px 20px rgba(5, 36, 28, 0.3);
+      cursor: pointer;
+      transition: all 0.3s linear;
+    }
+
+    .controls button:is(:hover, :focus-visible) {
+      transform: scale(0.96);
+    }
+
+    .controls button:nth-child(2) {
+      transform: scale(1.3);
+    }
+
+    .controls button:nth-child(2):is(:hover, :focus-visible) {
+      transform: scale(1.25);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="album-cover"><br>
+    <center>
+      <h1 style="color: aliceblue;">Nature Sounds</h1>
+    </center>
+    <div class="swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <img src="https://cdn.pixabay.com/audio/2024/02/13/13-55-21-136_200x200.jpg" />
+        </div>
+        <div class="swiper-slide">
+          <img src="https://cdn.pixabay.com/audio/2024/04/24/11-07-01-666_200x200.jpg" />
+        </div>
+        <div class="swiper-slide">
+          <img src="https://cdn.pixabay.com/audio/2023/05/16/03-43-43-391_200x200.jpg" />
+        </div>
+        <div class="swiper-slide">
+          <img src="https://cdn.pixabay.com/audio/2024/05/03/13-09-43-294_200x200.jpg" />
+        </div>
+        <div class="swiper-slide">
+          <img
+            src="data:image/jpeg;base64,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" />
+        </div>
+        <div class="swiper-slide">
+          <img src="https://cdn.pixabay.com/audio/2024/04/30/11-20-17-228_200x200.jpg" />
+        </div>
+        <div class="swiper-slide">
+          <img src="https://cdn.pixabay.com/audio/2024/03/01/17-27-52-678_200x200.png" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="music-player">
+    <h1>Title</h1>
+    <p>Song Name</p>
+
+    <audio id="song" autoplay>
+      <source src="https://cdn.pixabay.com/download/audio/2022/06/27/audio_d1eeb72cda.mp3?filename=happy-day-113985.mp3"
+        type="audio/mpeg" />
+    </audio>
+
+    <input type="range" value="0" id="progress" />
+
+    <div class="controls">
+      <button class="backward">
+        <i class="fa-solid fa-backward"></i>
+      </button>
+      <button class="play-pause-btn">
+        <i class="fa-solid fa-play" id="controlIcon"></i>
+      </button>
+      <button class="forward">
+        <i class="fa-solid fa-forward"></i>
+      </button>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <script>
+    const progress = document.getElementById("progress");
+    const song = document.getElementById("song");
+    const controlIcon = document.getElementById("controlIcon");
+    const playPauseButton = document.querySelector(".play-pause-btn");
+    const forwardButton = document.querySelector(".controls button.forward");
+    const backwardButton = document.querySelector(".controls button.backward");
+    const songName = document.querySelector(".music-player h1");
+    const artistName = document.querySelector(".music-player p");
+
+    const songs = [
+      {
+        title: "Biodynamic Impact",
+        name: "Tonal dark",
+        source:
+          "https://cdn.pixabay.com/download/audio/2024/01/04/audio_a103e3fddf.mp3?filename=biodynamic-impact-braam-tonal-dark-184276.mp3",
+      },
+      {
+        title: "Chirping Birds",
+        name: "Rain forests",
+        source:
+          "https://cdn.pixabay.com/download/audio/2024/04/24/audio_d72de064ad.mp3?filename=singing-club-of-birds_nature-sound-204240.mp3",
+      },
+      {
+        title: "Heavy rain",
+        name: "White records",
+        source:
+          "https://cdn.pixabay.com/download/audio/2021/09/09/audio_7f28a3d36b.mp3?filename=heavy-rain-nature-sounds-8186.mp3",
+      },
+      {
+        title: "Waterfall",
+        name: "Wildlife",
+        source:
+          "https://cdn.pixabay.com/download/audio/2023/08/14/audio_74cc9cde98.mp3?filename=waterfall-in-the-mountains_nature-sound-161925.mp3",
+      },
+      {
+        title: "Turbulent Stream",
+        name: "Cascading over Rocks",
+        source:
+          "https://cdn.pixabay.com/download/audio/2024/03/22/audio_77e33d44fd.mp3?filename=turbulent-stream-cascading-over-rocks-197728.mp3",
+      },
+
+      {
+        title: "WaterFlow",
+        name: "Forest Life",
+        source:
+          "https://cdn.pixabay.com/download/audio/2022/09/28/audio_ceee686a63.mp3?filename=waterfall_nature-sound-121190.mp3",
+      },
+      {
+        title: "Nature Walk",
+        name: "Sound in rain",
+        source:
+          "https://cdn.pixabay.com/download/audio/2024/05/02/audio_5bb2ad3639.mp3?filename=nature-walk-steps-sound-in-the-rain-with-birds-singing-206209.mp3",
+      },
+    ];
+
+    let currentSongIndex = 3;
+
+    function updateSongInfo() {
+      songName.textContent = songs[currentSongIndex].title;
+      artistName.textContent = songs[currentSongIndex].name;
+      song.src = songs[currentSongIndex].source;
+
+      song.addEventListener("loadeddata", function () { });
+    }
+
+    song.addEventListener("timeupdate", function () {
+      if (!song.paused) {
+        progress.value = song.currentTime;
+      }
+    });
+
+    song.addEventListener("loadedmetadata", function () {
+      progress.max = song.duration;
+      progress.value = song.currentTime;
+    });
+
+    function pauseSong() {
+      song.pause();
+      controlIcon.classList.remove("fa-pause");
+      controlIcon.classList.add("fa-play");
+    }
+
+    function playSong() {
+      song.play();
+      controlIcon.classList.add("fa-pause");
+      controlIcon.classList.remove("fa-play");
+    }
+
+    function playPause() {
+      if (song.paused) {
+        playSong();
+      } else {
+        pauseSong();
+      }
+    }
+
+    playPauseButton.addEventListener("click", playPause);
+
+    progress.addEventListener("input", function () {
+      song.currentTime = progress.value;
+    });
+
+    progress.addEventListener("change", function () {
+      playSong();
+    });
+
+    forwardButton.addEventListener("click", function () {
+      currentSongIndex = (currentSongIndex + 1) % songs.length;
+      updateSongInfo();
+      playPause();
+    });
+
+    backwardButton.addEventListener("click", function () {
+      currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+      updateSongInfo();
+      playPause();
+    });
+
+    updateSongInfo();
+
+    var swiper = new Swiper(".swiper", {
+      effect: "coverflow",
+      centeredSlides: true,
+      initialSlide: 3,
+      slidesPerView: "auto",
+      allowTouchMove: false,
+      spaceBetween: 40,
+      coverflowEffect: {
+        rotate: 25,
+        stretch: 0,
+        depth: 50,
+        modifier: 1,
+        slideShadows: false,
+      },
+      navigation: {
+        nextEl: ".forward",
+        prevEl: ".backward",
+      },
+    });
+  </script>
+</body>
+
+</html>

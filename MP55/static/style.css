@@ -1,0 +1,850 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  scroll-padding-top: 80px;
+  /* Adjust the value to match the height of your fixed header */
+}
+
+.site-header {
+  background-color: transparent;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  /* Increased padding to move title down and to the right */
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.title {
+  font-size: 2.5em;
+  /* Size of the title */
+  margin: 0;
+  color: #6f0606;
+  /* Dark blue color for the title */
+  padding-left: 20px;
+  /* Move title a bit to the right */
+  padding-top: 10px;
+  /* Move title a bit down */
+}
+.site-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.site-nav li {
+  margin-left: 20px;
+  display: flex;
+  align-items: center; /* Align items vertically center */
+}
+
+.site-nav a {
+  color: #fff; /* White text color for better visibility */
+  text-decoration: none;
+  padding: 5px 10px;
+  font-weight: bold;
+  display: flex;
+  align-items: center; /* Align text and icon vertically center */
+  transition: all 0.3s;
+}
+
+.site-nav a i {
+  margin-right: 8px; /* Space between icon and text */
+}
+
+.site-nav a:hover {
+  text-decoration: underline;
+  background-color: transparent;
+}
+
+
+#home {
+  background-image: url("bg.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100%;
+  margin-top: 80px;
+}
+
+#about {
+  background-image: url("bg2.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#customize {
+  background-image: url("bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#choose {
+  background-image: url("bg1.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+/* Add additional styles below */
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  /* Your existing body styles */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #f7f7f7;
+  color: #333;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+  /* Change to column to stack elements vertically */
+  align-items: center;
+  min-height: 100vh;
+  /* Ensure the body fills at least the viewport height */
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin-top: 20px;
+  /* Adjust this value to create space below the header */
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 10px;
+  flex: 1;
+  text-align: center;
+  flex-grow: 1;
+  box-shadow:
+    0 0 3px #dfb0b0,
+    0 0 6px #b95e5e,
+    0 0 9px #791919,
+    0 0 12px #750c0c;
+  animation: neonGlowBW 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes neonGlowBW {
+  from {
+    box-shadow:
+      0 0 2px #dfb0b0,
+      0 0 4px #b95e5e,
+      0 0 6px #791919,
+      0 0 8px #750c0c;
+  }
+
+  to {
+    box-shadow:
+      0 0 3px #dfb0b0,
+      0 0 6px #b95e5e,
+      0 0 9px #791919,
+      0 0 12px #750c0c;
+  }
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+button {
+  background-color: #dd7a7a;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #c76868;
+}
+
+.output {
+  font-size: 24px;
+  color: #333;
+  margin: 20px auto;
+  /* Centers the output box and adds margin to the top and bottom */
+  padding: 10px;
+  background-color: #e4eaf5;
+  border-radius: 10px;
+  width: 300px;
+  /* Fixed width */
+  height: 100px;
+  /* Fixed height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: auto;
+  /* In case the content overflows */
+}
+
+.discover-music-btn {
+  margin-top: 10px;
+  /* Adds more space above the button */
+}
+
+/* Apply the margin to the form that contains the Discover Music button */
+form.discover-music-form {
+  margin-top: 10px;
+}
+
+h2 {
+  color: #6f0606;
+}
+
+.card.about {
+  text-align: left;
+  /* Aligns text to the left in the first card */
+}
+
+.card h2 {
+  text-align: center;
+  /* Centers all card headings */
+}
+
+.card-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.header {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 50px;
+  /* Adjust as needed */
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.card {
+  flex-grow: 1;
+  /* Cards will grow to fill the space */
+  margin: 0 10px;
+  /* Adjust spacing between cards */
+  /* Add additional styling for the cards */
+}
+
+header {
+  width: 100%;
+  color: #6f0606;
+  text-align: center;
+  padding: 20px 0;
+}
+
+.content {
+  /* This ensures that the content is below the header */
+  margin-top: 20px;
+}
+
+.card.about {
+  position: relative;
+  z-index: 1;
+}
+
+.card.about::before {
+  content: '';
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.2;
+  /* Adjust the opacity as needed */
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.card.controls {
+  position: relative;
+  z-index: 1;
+}
+
+.card.controls::before {
+  content: '';
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.2;
+  /* Adjust the opacity as needed */
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+/* Reset styles for body and html */
+body,
+html {
+  margin: 0;
+  padding: 0;
+}
+
+/* Common styles for sections */
+section {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 2.5em;
+  margin: 0;
+  color: #fff;
+  /* White text color for better visibility */
+  padding-left: 20px;
+  padding-top: 10px;
+}
+
+
+/* Style for icons inside links */
+.site-nav i {
+  font-size: 20px; /* Initial icon size */
+  margin-right: 8px; /* Space between icon and text */
+  transition: transform 0.3s, color 0.3s; /* Smooth transition for hover effects */
+}
+
+/* Increase icon size and add glow on hover */
+.site-nav a:hover i {
+  font-size: 21px; /* Increase icon size on hover */
+  transform: scale(1.2); /* Slightly enlarge the icon */
+  color: #f46767; /* Change icon color on hover if desired */
+}
+
+/* Additional hover effects for links */
+.site-nav a:hover {
+  text-decoration: underline; /* Underline text on hover */
+  background-color: transparent; /* Ensure background is transparent */
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Reset default styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+/* Style for section content */
+.section-content {
+  max-width: 800px;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Enable smooth scrolling for the entire webpage */
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  /* Enables smooth scrolling */
+}
+
+.site-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  /* Your styles for header */
+}
+
+.section {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Your styles for sections */
+}
+
+/* Navbar styles */
+.site-header {
+  background-color: #6f0606;
+  /* Beautiful solid color */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 20px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.content h1 span {
+  color: #6f0606;
+}
+
+.full-width-table {
+  width: 100%;
+  height: 100%;
+  border-collapse: collapse;
+}
+
+.content-cell {
+  width: 50%;
+  /* Adjust as needed */
+  vertical-align: top;
+  padding: 190px;
+  /* Adjust as needed */
+  box-sizing: border-box;
+  /* Add any additional styling for your content */
+}
+
+.empty-cell {
+  width: 50%;
+  /* Adjust as needed */
+  /* This cell will be empty and take up the right half of the section */
+}
+
+/* Add any specific styles for your typewriter effect */
+#typewriter {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid;
+  /* Cursor effect */
+  animation: blink 0.75s step-end infinite;
+}
+
+/* Cursor blink effect */
+@keyframes blink {
+
+  from,
+  to {
+    border-color: transparent
+  }
+
+  50% {
+    border-color: black
+  }
+}
+
+.content-cell h1 {
+  font-size: 2.5em;
+  /* Adjust the size as needed */
+  line-height: 1.2;
+  /* Adjust line spacing as needed */
+}
+
+/* Ensure the typewriter effect text is also enlarged */
+#typewriter {
+  font-size: inherit;
+  /* This will make it the same size as the h1 */
+}
+
+.content-cell h1 {
+  font-size: 2.6em;
+  /* Larger size for the main heading */
+  line-height: 1.2;
+  margin-bottom: 0.5em;
+  /* Space below the heading */
+}
+
+.content-cell h1 span {
+  font-size: 0.9em;
+  /* Slightly smaller size for the highlighted text */
+  color: rgb(112, 9, 8);
+  /* Different color for attraction */
+}
+
+.section {
+  display: flex;
+  justify-content: flex;
+  /* Aligns content to the right */
+  min-height: 100vh;
+  width: 100%;
+  background-image: url('https://www.google.com/imgres?q=musical%20instrument%20hd%20wallpaper%20on%20right%20side%20light%20theme&imgurl=https%3A%2F%2Fpng.pngtree.com%2Fthumb_back%2Ffh260%2Fback_pic%2F03%2F72%2F71%2F9057b96ce3573a3.jpg&imgrefurl=https%3A%2F%2Fpngtree.com%2Ffree-backgrounds-photos%2Fmusical-instruments&docid=FkCQQ2gQQ4OskM&tbnid=Zdrg4OEQ1E2xZM&vet=12ahUKEwiHzJOA0siFAxWpxjgGHXA3BKYQM3oECCEQAA..i&w=718&h=404&hcb=2&ved=2ahUKEwiHzJOA0siFAxWpxjgGHXA3BKYQM3oECCEQAA');
+  background-size: cover;
+  background-attachment: fixed;
+  /* Makes the background image fixed during scroll */
+  background-repeat: no-repeat;
+}
+
+.content-cell {
+  width: 50%;
+  /* Adjust as needed */
+  padding-right: 5%;
+  /* Adjust as needed */
+  box-sizing: border-box;
+}
+
+#about {
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+  background: url("bg1.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#about {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 150px;
+  padding-right: 150px;
+}
+.carousel-wrapper {
+  position: relative;
+  width: 680px; /* Adjust width as needed */
+  height: 600px; /* Adjust height to ensure all images are the same size */
+  overflow: hidden;
+  margin: auto;
+}
+
+.carousel {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-slide {
+  min-width: 100%;
+  box-sizing: border-box;
+}
+
+.carousel-slide img {
+  width: 60%;
+  height: 100%; /* Ensure all images are the same size */
+  object-fit: cover; /* Adjusts image to cover the area without distortion */
+  border: 2px solid black; /* Border around images */
+}
+
+.carousel-control {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(183, 7, 7, 0.906); /* White with transparency */
+  color: rgb(250, 250, 250); /* Arrow color */
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 24px;
+  z-index: 10;
+  border-radius: 50%; /* Rounded buttons */
+  width: 60px; /* Adjust size of buttons */
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-control.prev {
+  left: 10px;
+}
+
+.carousel-control.next {
+  right: 10px;
+}
+
+.content-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.image-style {
+  height: 650px;
+  width: 1150px;
+  margin-right: 30px;
+}
+
+
+/* Contact Section Styles */
+#contact {
+  padding: 5rem 0;
+  background-image: url('bg1.png');
+}
+
+.contact-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.map-container {
+  flex: 1;
+  max-width: 100%;
+  min-width: 500px; /* Ensure responsiveness */
+}
+
+.map-container iframe {
+  width: 100%;
+  height: 500px; /* Adjust as needed */
+  border: none;
+  border-radius: 8px;
+}
+
+.form-container {
+  flex: 1;
+  max-width: 100%;
+  min-width: 500px; /* Ensure responsiveness */
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  box-shadow: 0 0 8px #b95e5e, 0 0 16px #791919, 0 0 24px #750c0c;
+  /* Apply the glow effect */
+  animation: neonGlow 1.5s ease-in-out infinite alternate;
+}
+
+.form-container h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #070000;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact-form label {
+  font-size: 1rem;
+  color: #8b1e1e;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.contact-form textarea {
+  resize: vertical; /* Allow vertical resizing */
+}
+
+.submit-btn {
+  padding: 0.8rem 1.5rem;
+  background-color: #dd7a7a;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  /* Adding transition for box-shadow */
+  
+}
+
+.submit-btn:hover {
+  background-color: #c76868;
+  
+  /* Apply glow effect on hover */
+}
+
+/* Glow animation for the contact form */
+@keyframes neonGlow {
+  from {
+    box-shadow:
+      0 0 5px #b95e5e,
+      0 0 10px #791919,
+      0 0 15px #750c0c;
+  }
+
+  to {
+    box-shadow:
+      0 0 8px #b95e5e,
+      0 0 16px #791919,
+      0 0 24px #750c0c;
+  }
+}
+
+
+
+#choose .app {
+  width: 90%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+#choose .container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+#choose .item {
+  width: 90px;
+  height: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+}
+
+#choose .radio {
+  display: none;
+}
+
+#choose .radio~span {
+  font-size: 3rem;
+  filter: grayscale(100);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#choose .radio:checked~span {
+  filter: grayscale(0);
+  font-size: 4rem;
+}
+
+#choose .body {
+  margin: 0;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: sans-serif;
+}
+
+#choose .h1,
+#choose .p {
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+}
+
+#submit-button {
+  background-color: rgb(152, 56, 53);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 20px;
+}
+#submit-button:hover {
+  background-color: #c76868;
+  
+  /* Apply glow effect on hover */
+}
+#choose .emoji {
+  font-size: 7rem;
+  margin-right: 25px;
+  line-height: 1;
+}
+
+.card ol {
+  padding-left: 20px;
+}
+.empty-cell {
+  background-image: url('bg3.png');
+  background-size: 80% auto; /* Set background size to 10% of its original size, auto for the height */
+  background-repeat: no-repeat; /* Prevent background from repeating */
+  background-position: center; /* Center the background image */
+  height: 400px; /* Set a height for the .empty-cell */
+}
+/* Footer styles */
+.site-footer {
+  background-color: #1a1a1a;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Optional: add a subtle shadow */
+}
+
+.footer-nav {
+  display: inline-block;
+  margin-bottom: 10px; /* Space between nav and copyright text */
+}
+
+.footer-link {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 15px; /* Increased margin for better spacing */
+  position: relative;
+  font-size: 16px; /* Adjust font size as needed */
+  display: inline-block;
+  transition: color 0.3s, transform 0.3s, text-shadow 0.3s;
+}
+
+.footer-link i {
+  margin-right: 8px; /* Space between icon and text */
+}
+
+/* Add underline effect */
+.footer-link::after {
+  content: '';
+  display: block;
+  height: 2px; /* Thickness of the underline */
+  background-color: #fff; /* Color of the underline */
+  position: absolute;
+  bottom: -5px; /* Position it below the text */
+  left: 0;
+  right: 0;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.footer-link:hover::after {
+  transform: scaleX(1); /* Show the underline on hover */
+}
+
+/* Add glow effect */
+.footer-link:hover {
+  color: #f7f7f7; /* Slightly lighter color on hover */
+  transform: scale(1.05); /* Slight zoom effect on hover */
+  text-shadow: 0 0 10px #6f0606, 0 0 20px #6f0606, 0 0 30px #6f0606, 0 0 40px #6f0606; /* Glow effect */
+}
